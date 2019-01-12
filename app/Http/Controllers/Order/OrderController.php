@@ -34,15 +34,26 @@ class OrderController extends Controller
             'order_sn'=>$order_sn,
             'uid'=>session()->get('uid'),
             'add_time'=>time(),
-            'order_amount'=>$order_amount
+            'order_amount'=>$order_amount,
         ];
         $oid=OrderModel::insertGetId($data);
         if($oid){
             echo '下单成功,您的订单号为'.$order_sn;
 //            清空购物车
             CartModel::where(['uid'=>session()->get('uid')])->delete();
+            header("Refresh:3;url=/order");
         }else{
             echo '生成订单失败';
         }
+    }
+    //订单展示
+    public function orderList(){
+        $list=OrderModel::where(['uid'=>session()->get('uid')])->orderBy('o                             
+  4id','desc')->get()->toArray();
+        $info=[
+            'title'=>'我的订单',
+            'data'=>$list
+        ];
+        return view('order.list',$info);
     }
 }

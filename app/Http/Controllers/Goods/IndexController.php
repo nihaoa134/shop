@@ -25,4 +25,12 @@ class IndexController extends Controller
         ];
         return view('goods.index',$data);
     }
+    public function show(){
+        $goods=GoodsModel::all();
+        $info=[
+            'data'=>$goods,
+            'title'=>'商品展示'
+        ];
+        return view('goods.show',$info);
+    }
 }

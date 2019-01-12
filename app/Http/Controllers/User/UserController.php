@@ -77,7 +77,7 @@ class UserController extends Controller
                 setcookie('id',$userInfo->id,time()+600,'/','shop.com',false,true);
                 setcookie('token',$token,time()+600,'/user','',false,true);
                 $request->session()->put('u_token',$token);
-                $request->session()->put('u_id',$userInfo->uid);
+                $request->session()->put('uid',$userInfo->id);
 
                 echo "登陆成功";
                 header("Refresh:3;url=/center");
@@ -95,6 +95,7 @@ class UserController extends Controller
             exit;
         }else{
             echo 'ID:'.$_COOKIE['id'].'欢迎回来' ;
+            header("Refresh:3;url=/goods");
         }
     }
     //路由中间件

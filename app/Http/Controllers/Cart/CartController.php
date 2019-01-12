@@ -52,7 +52,6 @@ class CartController extends Controller
 
             ];
             return $response;
-
         }
         //查看是否已经加入购物车
         $cart=CartModel::where(['uid'=>session()->get('uid'),'goods_id'=>$goods_id])->first();
@@ -119,6 +118,7 @@ class CartController extends Controller
 
         if($rs){
             echo '添加成功';
+
         }
 
     }

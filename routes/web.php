@@ -72,11 +72,14 @@ Route::any('/cart/del2/{goods_id}','Cart\CartController@del2')->middleware('chec
 
 //商品
 Route::get('/goods/{goods_id}','Goods\IndexController@index');
-
-
-
+//商品列表
+Route::any('/goods','Goods\IndexController@show')->middleware('check.login');
 //商品展示
 Route::any('/goods/index','Goods\IndexController@add2')->middleware('check.login');
 
 //添加订单
 Route::any('/order/add','Order\OrderController@add')->middleware('check.login');
+//订单展示
+Route::any('/order','Order\OrderController@orderList')->middleware('check.login');
+//订单展示
+Route::any('/alipay','Pay\alipayController@test')->middleware('check.login');
