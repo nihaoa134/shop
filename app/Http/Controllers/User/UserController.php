@@ -89,13 +89,9 @@ class UserController extends Controller
         }
     }
     public function center(){
-        if(empty($_COOKIE['id'])){
-            header("Refresh:3;url=/login");
-            echo '请先登录';
-            exit;
-        }else{
-            echo 'ID:'.$_COOKIE['id'].'欢迎回来' ;
-            header("Refresh:3;url=/goods");
+        {
+            $data = [];
+            return view('users.center',$data);
         }
     }
     //路由中间件
