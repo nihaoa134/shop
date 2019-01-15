@@ -57,6 +57,7 @@ class OrderController extends Controller
 
 
         echo '下单成功,订单号：'.$oid .' 跳转支付';
+        header('Refresh:2;url=/pay/'.$oid);
 
 
         //清空购物车

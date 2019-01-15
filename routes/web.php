@@ -80,6 +80,10 @@ Route::any('/order/add','Order\OrderController@add')->middleware('check.login');
 //订单展示
 Route::any('/order','Order\OrderController@orderList')->middleware('check.login');
 //支付
-Route::get('/pay/test','Pay\alipayController@test');         //测试
-Route::get('/pay/o/{oid}','Pay\IndexController@order')->middleware('check.login.token');         //订单支付
-Route::post('/pay/notify','Pay\alipayController@notify');        //支付宝支付 通知回调
+Route::get('/pay/test','Pay\alipayController@test');
+//订单支付
+Route::get('/pay/{oid}','Pay\alipayController@pay');
+//异步
+Route::post('/pay/alipay/notify','Pay\alipayController@aliNotify');
+//同步
+Route::get('/pay/alipay/return','Pay\alipayController@aliReturn');
