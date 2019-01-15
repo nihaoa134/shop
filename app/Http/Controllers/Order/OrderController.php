@@ -11,49 +11,69 @@ use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
     //
-    public function add(){
+
+    public function index()
+    {
+        echo __METHOD__;
+    }
+
+    /**
+     * 下单
+     */
+    public function add(Request $request)
+    {
         //查询购物车商品
-        $cart_goods=CartModel::where(['uid'=>session()->get('uid')])->orderBy('id','desc')->get()->toArray();
+        $cart_goods = CartModel::where(['uid'=>session()->get('uid')])->orderBy('id','desc')->get()->toArray();
         if(empty($cart_goods)){
-            die('购物车中没有商品');
+            die("购物车中无商品");
         }
-        $order_amount=0;
+        $order_amount = 0;
         foreach($cart_goods as $k=>$v){
-            $goodsInfo=GoodsModel::where(['goods_id'=>$v['goods_id']])->first()->toArray();
-            $goodsInfo['num']=$v['num'];
-            $data[]=$goodsInfo;
-            //计算价格
-            $order_amount+=$goodsInfo['price']*$v['num'];
+            $goods_info = GoodsModel::where(['goods_id'=>$v['goods_id']])->first()->toArray();
+            $goods_info['num'] = $v['num'];
+            $list[] = $goods_info;
+
+            //计算订单价格 = 商品数量 * 单价
+            $order_amount += $goods_info['price'] * $v['num'];
         }
-        //echo $order_amount;
-        //print_r($goodsInfo);
-        //生成订单号
-        $order_sn=OrderModel::generateOrderSn();
-        //echo $order_sn;
-        $data=[
-            'order_sn'=>$order_sn,
-            'uid'=>session()->get('uid'),
-            'add_time'=>time(),
-            'order_amount'=>$order_amount,
+
+        //echo '<pre>';print_r($list);echo '</pre>';die;
+        $order_sn = OrderModel::generateOrderSN();  //生成订单号
+
+        $data = [
+            'order_sn'      => $order_sn,
+            'uid'           => session()->get('uid'),
+            'add_time'      => time(),
+            'order_amount'  => $order_amount
         ];
-        $oid=OrderModel::insertGetId($data);
-        if($oid){
-            echo '下单成功,您的订单号为'.$order_sn;
-//            清空购物车
-            CartModel::where(['uid'=>session()->get('uid')])->delete();
-            header("Refresh:3;url=/order");
-        }else{
+
+        //写入订单表
+        $oid = OrderModel::insertGetId($data);
+        if(!$oid){
             echo '生成订单失败';
         }
+
+        //写入订单商品表
+
+
+        echo '下单成功,订单号：'.$oid .' 跳转支付';
+
+
+        //清空购物车
+        CartModel::where(['uid'=>session()->get('uid')])->delete();
     }
-    //订单展示
-    public function orderList(){
-        $list=OrderModel::where(['uid'=>session()->get('uid')])->orderBy('o                             
-  4id','desc')->get()->toArray();
-        $info=[
-            'title'=>'我的订单',
-            'data'=>$list
+
+
+    /**
+     * 订单列表
+     */
+    public function orderList()
+    {
+        $list = OrderModel::where(['uid'=>session()->get('uid'),'is_pay'=>0])->orderBy('oid','desc')->get()->toArray();
+        $data = [
+            'list'  => $list
         ];
-        return view('order.list',$info);
+        return view('orders.list',$data);
     }
 }
+
