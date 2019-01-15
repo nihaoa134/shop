@@ -65,9 +65,7 @@ class OrderController extends Controller
     }
 
 
-    /**
-     * 订单列表
-     */
+    //订单列表
     public function orderList()
     {
         $list = OrderModel::where(['uid'=>session()->get('uid'),'is_pay'=>0])->orderBy('oid','desc')->get()->toArray();

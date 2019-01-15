@@ -204,7 +204,7 @@ class alipayController extends Controller
     }
     //同步通知回调
     public function aliReturn(){
-        header('Refresh:2;url=/order');
+        header('Refresh:2;url=/order.php');
         echo "订单： ".$_GET['out_trade_no'] . ' 支付成功，正在跳转';
     }
     //异步通知回调
