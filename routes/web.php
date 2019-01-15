@@ -53,9 +53,7 @@ Route::post('/reg','User\UserController@doreg');
 Route::get('/login','User\UserController@login');
 Route::post('/login','User\UserController@dologin');
 
-Route::get('/center','User\UserController@center');
-
-Route::get('/center','User\UserController@center');
+Route::get('/center','User\UserController@center')->middleware('check.login');
 
 //中间件
 Route::get('checkcookie','User\UserController@cookie')->middleware('checkcookie');
