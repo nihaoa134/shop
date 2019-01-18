@@ -8,6 +8,11 @@ use App\Model\GoodsModel;
 
 class IndexController extends Controller
 {
+        public function __construct()
+        {
+                $this->middleware('auth');
+        }
+
     //商品详情
     public function index($goods_id)
     {

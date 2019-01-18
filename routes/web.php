@@ -60,25 +60,25 @@ Route::get('checkcookie','User\UserController@cookie')->middleware('checkcookie'
 
 //购物车
 Route::get('checklogin','User\UserController@index')->middleware('check.login');
-Route::get('/cart','Cart\CartController@index')->middleware('check.login');
-Route::get('/cart/add/{goods_id}','Cart\CartController@add')->middleware('check.login');
-Route::get('/cart/del/{goods_id}','Cart\CartController@del')->middleware('check.login');
+Route::get('/cart','Cart\CartController@index');
+Route::get('/cart/add/{goods_id}','Cart\CartController@add');
+Route::get('/cart/del/{goods_id}','Cart\CartController@del');
 //添加购物车
-Route::any('/cart/add2','Cart\CartController@add2')->middleware('check.login');
+Route::any('/cart/add2','Cart\CartController@add2');
 //删除购物车
-Route::any('/cart/del2/{goods_id}','Cart\CartController@del2')->middleware('check.login');
+Route::any('/cart/del2/{goods_id}','Cart\CartController@del2');
 
 //商品
 Route::get('/goods/{goods_id}','Goods\IndexController@index');
 //商品列表
-Route::any('/goods','Goods\IndexController@show')->middleware('check.login');
+Route::any('/goods','Goods\IndexController@show');
 //商品展示
-Route::any('/goods/index','Goods\IndexController@add2')->middleware('check.login');
+Route::any('/goods/index','Goods\IndexController@add2');
 
 //添加订单
-Route::any('/order/add','Order\OrderController@add')->middleware('check.login');
+Route::any('/order/add','Order\OrderController@add');
 //订单展示
-Route::any('/order','Order\OrderController@orderList')->middleware('check.login');
+Route::any('/order','Order\OrderController@orderList');
 //支付
 Route::get('/pay/test','Pay\alipayController@test');
 //订单支付
@@ -87,3 +87,7 @@ Route::get('/pay/{oid}','Pay\alipayController@pay');
 Route::post('/pay/alipay/notify','Pay\alipayController@aliNotify');
 //同步
 Route::get('/pay/alipay/return','Pay\alipayController@aliReturn');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
