@@ -91,3 +91,6 @@ Route::get('/pay/alipay/return','Pay\alipayController@aliReturn');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/pay','Goods\IndexController@pay');
+Route::post('/payadd','Goods\IndexController@payadd');
