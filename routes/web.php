@@ -94,3 +94,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/pay','Goods\IndexController@pay');
 Route::post('/payadd','Goods\IndexController@payadd');
+
+//微信
+Route::get('/weixin/test','Weixin\WeixinController@test');
+Route::get('/weixin/valid','Weixin\WeixinController@validToken');
+Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
+Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收微信服务器事件推送
+Route::post('/weixin/valid','Weixin\WeixinController@validToken');
