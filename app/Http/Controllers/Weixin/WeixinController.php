@@ -122,7 +122,7 @@ class WeixinController extends Controller
 
     /**
      * 获取用户信息
-     * @param $openid
+     * @param $openidli
      */
     public function getUserInfo($openid)
     {
@@ -131,7 +131,7 @@ class WeixinController extends Controller
         $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
 
         $data = json_decode(file_get_contents($url),true);
-        echo '<pre>';print_r($data);echo '</pre>';
+        //echo '<pre>';print_r($data);echo '</pre>';
         return $data;
     }
 
