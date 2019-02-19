@@ -75,7 +75,7 @@ class WeixinController extends Controller
                 var_dump($id);
             }
         }else if($event == 'click'){               //click 菜单
-            if($xml->EventKey=='kefu01'){
+            if($xml->EventKey=='reply'){
                 $this->reply($openid,$xml->ToUserName);
             }
         }
@@ -164,9 +164,9 @@ class WeixinController extends Controller
                     "url"   => "https://www.baidu.com"
                 ],
                 [
-                "type"  => "view",      // view类型 跳转指定 URL
-                "name"  => "sousuo",
-                "url"   => "https://www.baidu.com"
+                "type"  => "click",      // view类型 跳转指定 URL
+                "name"  => "reply",
+                "key"   => "reply"
             ]
             ]
         ];
