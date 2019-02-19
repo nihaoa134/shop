@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Weixin;
 use App\Model\WeixinUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
 
@@ -151,7 +150,7 @@ class WeixinController extends Controller
             "button"    => [
                 [
                     "type"  => "view",      // view类型 跳转指定 URL
-                    "name"  => "Lening222",
+                    "name"  => "sousuo",
                     "url"   => "https://www.baidu.com"
                 ]
             ]
