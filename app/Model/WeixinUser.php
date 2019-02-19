@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WeixinUser extends Model
 {
     //
-    public $table = 'p_wx_users';
+    public $table = 'wx_user';
     public $timestamps = false;
 
 }
