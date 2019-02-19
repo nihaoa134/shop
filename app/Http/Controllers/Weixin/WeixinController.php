@@ -56,7 +56,6 @@ class WeixinController extends Controller
                 <MsgType><![CDATA[text]]></MsgType>
                 <Content><![CDATA['. $msg. date('Y-m-d H:i:s') .']]></Content></xml>';
                 echo $xml_response;
-                exit();
             }
         }
         if($event=='subscribe'){
