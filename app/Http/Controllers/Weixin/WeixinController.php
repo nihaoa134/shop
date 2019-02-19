@@ -131,7 +131,7 @@ class WeixinController extends Controller
         $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
 
         $data = json_decode(file_get_contents($url),true);
-        //echo '<pre>';print_r($data);echo '</pre>';
+        echo '<pre>';print_r($data);echo '</pre>';
         return $data;
     }
 
@@ -139,6 +139,7 @@ class WeixinController extends Controller
      * 创建服务号菜单
      */
     public function createMenu(){
+
         // 1 获取access_token 拼接请求接口
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->getWXAccessToken();
         //echo $url;echo '</br>';
