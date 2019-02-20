@@ -85,7 +85,6 @@ class WeixinController extends Controller
 
             //保存用户信息
             $u = WeixinUser::where(['openid'=>$openid])->first();
-            //var_dump($u);die;
             if($u){       //用户不存在
                 echo '用户已存在';
             }else{
@@ -206,6 +205,27 @@ class WeixinController extends Controller
         $data = file_get_contents("php://input");
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+    }
+    /**
+     * 群发消息
+     */
+    public function getMass(){
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=ACCESS_TOKEN'.$this->getWXAccessToken();
+        $WeixinUser = WeixinUser::get()->toArray();
+        foreach ($WeixinUser as $v){
+            $openid[]=$v['openid'];
+        }
+        $data = [
+            "touser" => $openid,
+            "msgtype" => "text",
+            "content"=> "hello from boxer."
+        ];
+        $client = new GuzzleHttp\Client(['base_uri' => $url]);
+        $r = $client->request('POST', $url, [
+            'body' => json_encode($data)
+        ]);
+        $response_arr = json_decode($r->getBody(),true);
+        echo '<pre>';print_r($response_arr);echo '</pre>';
     }
 
     /**
