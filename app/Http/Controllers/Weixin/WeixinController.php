@@ -218,7 +218,10 @@ class WeixinController extends Controller
         $data = [
             "touser" => $openid,
             "msgtype" => "text",
-            "content"=> "hello from boxer."
+            "text"=> "hello from boxer.",
+            "text" => [
+                "content"=>"hello from boxer."
+            ]
         ];
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
         $r = $client->request('POST', $url, [
