@@ -210,7 +210,7 @@ class WeixinController extends Controller
      * 群发消息
      */
     public function getMass(){
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=ACCESS_TOKEN'.$this->getWXAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token='.$this->getWXAccessToken();
         $WeixinUser = WeixinUser::get()->toArray();
         foreach ($WeixinUser as $v){
             $openid[]=$v['openid'];
