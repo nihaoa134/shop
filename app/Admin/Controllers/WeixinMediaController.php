@@ -87,10 +87,12 @@ class WeixinMediaController extends Controller
         $grid->msg_type('Msg type');
         $grid->media_id('Media id');
         $grid->msg_id('Msg id');
-        $grid->pic_url('Pic url');
+        //$grid->pic_url('Pic url');
         $grid->format('Format');
         $grid->thumb_media_id('Thumb media id');
-        $grid->local_file_name('Local file name');
+        $grid->local_file_name('素材')->display(function ($data){
+            return "<img src='https://pp.lixiaonitongxue.top/wx/imgs".$data."' width=150px height=150px";
+        });
         $grid->local_file_path('Local file path');
 
         return $grid;
