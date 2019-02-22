@@ -104,7 +104,7 @@ Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/add','Weixin\WeixinController@createMenu');
 Route::get('/weixin/fsend','Weixin\WeixinController@getMass');
 
-Route::post('/weixin/show','Weixin\WeixinController@formShow');     //表单测试
+Route::get('/weixin/show','Weixin\WeixinController@formShow');     //表单测试
 Route::post('/weixin/test','Weixin\WeixinController@formTest');     //表单测试
 
 Route::get('/weixin/material/list','Weixin\WeixinController@materialList');     //获取永久素材列表
