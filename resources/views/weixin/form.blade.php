@@ -8,7 +8,7 @@
     <title>微信永久素材上传</title>
 </head>
 <body>
-<form action="/weixin/show" method="post" enctype="multipart/form-data">
+<form action="/weixin/test" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     <h2>微信素材上传</h2>
     <input type="file" name="media">
