@@ -424,7 +424,7 @@ class WeixinController extends Controller
     public function formShow()
     {
 
-        return view('test.form');
+        return view('weixin.form');
 
     }
 
