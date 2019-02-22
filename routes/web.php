@@ -103,3 +103,7 @@ Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收
 Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/add','Weixin\WeixinController@createMenu');
 Route::get('/weixin/fsend','Weixin\WeixinController@getMass');
+
+Route::get('/weixin/material/list','Weixin\WeixinController@materialList');     //获取永久素材列表
+Route::get('/weixin/material/upload','Weixin\WeixinController@upMaterial');     //上传永久素材
+Route::post('/weixin/material','Weixin\WeixinController@materialTest');     //创建菜单
