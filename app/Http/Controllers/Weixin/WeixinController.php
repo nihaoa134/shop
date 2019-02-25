@@ -459,6 +459,165 @@ class WeixinController extends Controller
 
 
     }
+    /**
+     * 客服接口页面
+     */
+    public function kefuShow($id)
+    {
+        $userInfo = WxUserModel::where(['id'=>$id])->first();
+        //var_dump($data);exit;
+        $info = [
+            'title'     => '客服聊天',
+            'openid'    => $userInfo->openid,
+        ];
+        return view('weixin.kefuchat',$info);
+    }
 
+    /**
+     * 客服消息处理页面
+     * @param Request $request
+     * @return array
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
+    public function kefuChat()
+    {
+        $openid = $_GET['openid'];  //用户openid
+        $pos = $_GET['pos'];        //上次聊天位置
+
+        $msg = WxChatRecordModel::where(['open_id'=>$openid])->where('id','>',$pos)->first();
+        if($msg){
+            $msg=$msg->toArray();
+            $msg['add_time']=date('Y-m-d H:i:s');
+            $response = [
+                'errno' => 0,
+                'data'=>$msg
+            ];
+        }else{
+            $response = [
+                'errno' => 50001,
+                'data'=>'服务器异常'
+            ];
+        }
+        die(json_encode($response));
+    }
+
+    /**
+     * 客服消息处理
+     */
+    public  function kefuChatMsg(Request $request){
+        $open_id = $request->input('openid');
+        $msg = $request->input('msg');
+
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$this->getWXAccessToken();
+
+        $data = [
+            'touser'       =>$open_id,
+            'msgtype'      =>'text',
+            'text'         =>[
+                'content'  =>$msg,
+            ]
+        ];
+
+        $client = new GuzzleHttp\Client();
+
+        $response = $client->request('POST', $url, [
+            'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
+        ]);
+        $body = $response->getBody();
+        $arr = json_decode($body,true);
+        //加入数据库
+        if($arr['errcode']==0){
+            $info = [
+                'type'      =>  2,
+                'message'   =>  $msg,
+                'msgid'     =>  0,
+                'add_time'  =>  time(),
+                'open_id'   =>  $open_id,
+            ];
+            WxChatRecordModel::insertGetId($info);
+        }
+
+        return $arr;
+    }
+ /**
+     * 客服接口页面
+     */
+    public function kefuShow($id)
+    {
+        $userInfo = WxUserModel::where(['id'=>$id])->first();
+        //var_dump($data);exit;
+        $info = [
+            'title'     => '客服聊天',
+            'openid'    => $userInfo->openid,
+        ];
+        return view('weixin.kefuchat',$info);
+    }
+
+    /**
+     * 客服消息处理页面
+     * @param Request $request
+     * @return array
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
+    public function kefuChat()
+    {
+        $openid = $_GET['openid'];  //用户openid
+        $pos = $_GET['pos'];        //上次聊天位置
+
+        $msg = WxChatRecordModel::where(['open_id'=>$openid])->where('id','>',$pos)->first();
+        if($msg){
+            $msg=$msg->toArray();
+            $msg['add_time']=date('Y-m-d H:i:s');
+            $response = [
+                'errno' => 0,
+                'data'=>$msg
+            ];
+        }else{
+            $response = [
+                'errno' => 50001,
+                'data'=>'服务器异常'
+            ];
+        }
+        die(json_encode($response));
+    }
+
+    /**
+     * 客服消息处理
+     */
+    public  function kefuChatMsg(Request $request){
+        $open_id = $request->input('openid');
+        $msg = $request->input('msg');
+
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$this->getWXAccessToken();
+
+        $data = [
+            'touser'       =>$open_id,
+            'msgtype'      =>'text',
+            'text'         =>[
+                'content'  =>$msg,
+            ]
+        ];
+
+        $client = new GuzzleHttp\Client();
+
+        $response = $client->request('POST', $url, [
+            'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
+        ]);
+        $body = $response->getBody();
+        $arr = json_decode($body,true);
+        //加入数据库
+        if($arr['errcode']==0){
+            $info = [
+                'type'      =>  2,
+                'message'   =>  $msg,
+                'msgid'     =>  0,
+                'add_time'  =>  time(),
+                'open_id'   =>  $open_id,
+            ];
+            WxChatRecordModel::insertGetId($info);
+        }
+
+        return $arr;
+    }
 
 }

@@ -110,3 +110,7 @@ Route::post('/weixin/test','Weixin\WeixinController@formTest');     //表单测�
 Route::get('/weixin/material/list','Weixin\WeixinController@materialList');     //获取永久素材列表
 Route::get('/weixin/material/upload','Weixin\WeixinController@upMaterial');     //上传永久素材
 Route::post('/weixin/material','Weixin\WeixinController@materialTest');     //创建菜单
+
+Route::get('/weixin/kefu/{openid}','Weixin\WeixinController@kefuShow');     //客服聊天页面
+Route::get('/weixin/kefumsg','Weixin\WeixinController@kefuChat');     //客服聊天页面
+Route::post('/weixin/kefuchat','Weixin\WeixinController@kefuChatMsg');     //客服聊天页面
