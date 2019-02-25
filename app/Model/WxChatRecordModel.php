@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WxChatRecordModel extends Model
 {
     //
-    public $table = 'wx_user';
+    public $table = 'wx_chat';
     public $timestamps = false;
 
 }
