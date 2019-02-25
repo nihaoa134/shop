@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Weixin;
 
+use App\Model\WxChatRecordModel;
+use App\Model\WxMaterialModel;
+use App\Model\WxMediaModel;
+use App\Model\WxUserModel;
 use App\Model\WeixinUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,7 +13,7 @@ use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Storage;
 use App\Model\WeixinMedia;
-use Illuminate\Support\Facades\Storage;
+
 
 
 class WeixinController extends Controller
