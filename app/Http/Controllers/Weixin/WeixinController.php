@@ -482,6 +482,7 @@ class WeixinController extends Controller
         $info = [
             'title'     => '客服聊天',
             'openid'    => $userInfo->openid,
+            'nickname'  => $userInfo->nickname,
         ];
         return view('weixin.kefuchat',$info);
     }
