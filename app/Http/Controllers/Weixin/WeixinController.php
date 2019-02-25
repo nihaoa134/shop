@@ -469,7 +469,7 @@ class WeixinController extends Controller
      */
     public function kefuShow($id)
     {
-        $userInfo = WxUserModel::where(['id'=>$id])->first();
+        $userInfo = WxUser::where(['id'=>$id])->first();
         //var_dump($data);exit;
         $info = [
             'title'     => '客服聊天',
