@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0592b1ed-91e2-4bc6-8fe5-e72d9fc76efa" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Http/Controllers/Weixin/WeixinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Http/Controllers/Weixin/WeixinController.php" afterDir="false" />
-    </list>
+    <list default="true" id="0592b1ed-91e2-4bc6-8fe5-e72d9fc76efa" name="默认的" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +14,8 @@
       <file leaf-file-name="WeixinController.php" pinned="false" current-in-tab="true">
         <entry file="file:$PROJECT_DIR$/../../../..//D:/wwwroot/show/shop/app/Http/Controllers/Weixin/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="601" column="5" selection-start-line="522" selection-start-column="4" selection-end-line="601" selection-end-column="5" />
+            <state relative-caret-position="11286">
+              <caret line="603" lean-forward="true" selection-start-line="603" selection-end-line="603" />
             </state>
           </provider>
         </entry>
@@ -122,15 +119,15 @@
       <updated>1550461731083</updated>
       <workItem from="1550461732507" duration="47000" />
       <workItem from="1550882741317" duration="8107000" />
-      <workItem from="1551054742466" duration="688000" />
+      <workItem from="1551054742466" duration="1222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8842000" />
+    <option name="totallyTimeSpent" value="9376000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533512" />
@@ -178,8 +175,8 @@
     </entry>
     <entry file="file:$PROJECT_DIR$/../../../..//D:/wwwroot/show/shop/app/Http/Controllers/Weixin/WeixinController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="601" column="5" selection-start-line="522" selection-start-column="4" selection-end-line="601" selection-end-column="5" />
+        <state relative-caret-position="11286">
+          <caret line="603" lean-forward="true" selection-start-line="603" selection-end-line="603" />
         </state>
       </provider>
     </entry>

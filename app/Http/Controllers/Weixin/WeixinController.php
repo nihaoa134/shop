@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Storage;
 use App\Model\WeixinMedia;
+use Illuminate\Support\Facades\Storage;
+
 
 class WeixinController extends Controller
 {
