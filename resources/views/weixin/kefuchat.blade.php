@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <h2>用户openId：{{$openid}}</h2>
+    <h2>用户openId：{{$nickname}}</h2>
 
     <div class="chat" id="chat_div">
 
