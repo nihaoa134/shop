@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0592b1ed-91e2-4bc6-8fe5-e72d9fc76efa" name="默认的" comment="" />
+    <list default="true" id="0592b1ed-91e2-4bc6-8fe5-e72d9fc76efa" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/Http/Controllers/Weixin/WeixinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Http/Controllers/Weixin/WeixinController.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,13 +14,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="WeixinController.php" pinned="false" current-in-tab="true">
-        <entry file="file:$PROJECT_DIR$/../../../..//D:/wwwroot/show/shop/app/Http/Controllers/Weixin/WeixinController.php">
+        <entry file="file:$PROJECT_DIR$/../../../..//Z:/shop/app/Http/Controllers/Weixin/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10473">
-              <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-              <folding>
-                <element signature="e#47#79#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="358">
+              <caret line="475" column="21" selection-start-line="475" selection-start-column="21" selection-end-line="475" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -45,7 +44,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="520" />
     <option name="y" value="165" />
     <option name="width" value="1370" />
@@ -123,12 +122,12 @@
       <updated>1550461731083</updated>
       <workItem from="1550461732507" duration="47000" />
       <workItem from="1550882741317" duration="8107000" />
-      <workItem from="1551054742466" duration="2206000" />
+      <workItem from="1551054742466" duration="2942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10360000" />
+    <option name="totallyTimeSpent" value="11096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -169,7 +168,6 @@
         <state relative-caret-position="-1158" />
       </provider>
     </entry>
-    <entry file="file:$PROJECT_DIR$/../../../..//Z:/shop/app/Http/Controllers/Weixin/WeixinController.php" />
     <entry file="file:$PROJECT_DIR$/../../../..//$PROJECT_DIR$/Http/Controllers/Weixin/WeixinController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="656">
@@ -179,11 +177,18 @@
     </entry>
     <entry file="file:$PROJECT_DIR$/../../../..//D:/wwwroot/show/shop/app/Http/Controllers/Weixin/WeixinController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10473">
-          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+        <state relative-caret-position="-6120">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
           <folding>
             <element signature="e#47#79#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:$PROJECT_DIR$/../../../..//Z:/shop/app/Http/Controllers/Weixin/WeixinController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="475" column="21" selection-start-line="475" selection-start-column="21" selection-end-line="475" selection-end-column="21" />
         </state>
       </provider>
     </entry>
