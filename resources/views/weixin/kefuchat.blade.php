@@ -62,7 +62,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url:     '/weixin/kefuchatmsg?openid='+openid+'&pos='+$('#msg_pos').val(),
+                    url:     '/weixin/kefumsg?openid='+openid+'&pos='+$('#msg_pos').val(),
                     type:    'get',
                     dataType: 'json',
                     success:   function (d) {
