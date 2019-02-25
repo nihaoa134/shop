@@ -93,7 +93,3 @@
     </script>
 @endsection
 
-@section('footer')
-    @parent
-@endsection
-
