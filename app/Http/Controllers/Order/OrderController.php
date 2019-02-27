@@ -75,7 +75,7 @@ class OrderController extends Controller
         $list = OrderModel::where(['uid'=>session()->get('uid'),'is_pay'=>0])->orderBy('oid','desc')->get()->toArray();
         $data = [
             'title'=>'我的订单',
-            'list'  => $list,
+            'data'  => $list,
         ];
         return view('order.list',$data);
 
