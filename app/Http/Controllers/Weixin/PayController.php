@@ -177,6 +177,17 @@ class PayController extends Controller
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
 
+
+                //修改数据库
+                $info = [
+                    'is_pay'        =>1,
+                    'pay_amount'    =>$xml->total_fee,
+                    'pay_time'      =>$xml->time_end,
+                    'plat_oid'      =>$xml->out_trade_no,
+                    'plat'          =>2,
+                ];
+                OrderModel::where(['order_sn'=>$xml->out_trade_no])->update($info);
+
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];
@@ -187,8 +198,29 @@ class PayController extends Controller
 
         $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
         echo $response;
-
     }
-
+    /**
+     * 微信扫码成功
+     */
+    public function WxSuccess(Request $request)
+    {
+        $order_id = $request->input('order_id');
+        $where = [
+            'order_id'  =>  $order_id,
+        ];
+        $order_info = OrderModel::where($where)->first();
+        if($order_info['is_pay']==1){
+            $response = [
+                'error' => 0,
+                'msg'   => '支付成功',
+            ];
+        }else{
+            $response = [
+                'error' => 1,
+                'msg'   => '未支付',
+            ];
+        }
+        return $response;
+    }
 
 }
