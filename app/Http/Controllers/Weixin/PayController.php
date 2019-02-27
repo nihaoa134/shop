@@ -65,7 +65,7 @@ class PayController extends Controller
             'order_id'  =>  '$order_id',
 
         ];
-        return view('weixin.',$info);
+        return view('weixin.weixincode',$info);
     }
 
 
