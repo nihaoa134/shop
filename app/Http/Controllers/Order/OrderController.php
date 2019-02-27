@@ -59,10 +59,6 @@ class OrderController extends Controller
                 'data'=>$data,
                 'title'=>'确认支付'
             ];
-            //写入订单商品表
-            foreach($list as $k=>$v){
-                OrderModel::insert(['goods_id'=>$v['goods_id'],'order_id'=>$oid,'price'=>$v['price'],'num'=>$v['num']]);
-            }
             return view('order.yespay',$info);
         }else{
             echo '生成订单失败';
