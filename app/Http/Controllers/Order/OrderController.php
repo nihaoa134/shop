@@ -49,16 +49,23 @@ class OrderController extends Controller
 
         //写入订单表
         $oid = OrderModel::insertGetId($data);
-        if(!$oid){
+        if($oid){
+            //echo '下单成功,您的订单号为'.$order_sn.'.跳转支付!';
+//            清空购物车
+            CartModel::where(['uid'=>Auth::id()])->delete();
+            $data['order_id']=$oid;
+            $info=[
+                'data'=>$data,
+                'title'=>'确认支付'
+            ];
+            //写入订单商品表
+            foreach($list as $k=>$v){
+                OrderGoodsModel::insert(['goods_id'=>$v['goods_id'],'order_id'=>$oid,'price'=>$v['price'],'num'=>$v['num']]);
+            }
+            return view('order.yespay',$info);
+        }else{
             echo '生成订单失败';
         }
-
-        //写入订单商品表
-
-
-        echo '下单成功,订单号：'.$oid .' 跳转支付';
-        header('Refresh:2;url=/pay/'.$oid);
-
 
         //清空购物车
         CartModel::where(['uid'=>session()->get('uid')])->delete();
