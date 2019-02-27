@@ -18,7 +18,7 @@
         </tr>
         @foreach($data as $v)
             <tr class="text-center">
-                <td>{{$v['order_id']}}</td>
+                <td>{{$v['oid']}}</td>
                 <td>{{$v['order_sn']}}</td>
                 <td>{{$v['order_amount']/100}}</td>
                 <td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
