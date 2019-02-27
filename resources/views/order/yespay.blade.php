@@ -22,7 +22,8 @@
             <td>{{date('Y-m-d H:i:s',$data['add_time'])}}</td>
         </tr>
     </table>
-    <a href="/pay/order/{{$data['order_id']}}" id="submit_ysepay" class="btn btn-success btn-block"> 确认支付 </a>
+    <a href="/pay/alipay/order/{{$data['order_id']}}" id="submit_yesalipay" class="btn btn-success btn-block"> 支付宝支付 </a>
+    <a href="/weixin/pay/test/{{$data['order_id']}}" id="submit_yeswxpay" class="btn btn-success btn-block"> 微信支付 </a>
 @endsection
 
 @section('footer')
