@@ -1,7 +1,5 @@
 @extends('layouts.bst')
 
-@section('title') {{$title}}    @endsection
-
 @section('nav')
     @parent
 @endsection
