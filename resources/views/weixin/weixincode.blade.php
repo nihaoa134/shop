@@ -1,4 +1,3 @@
-
 @extends('layouts.mama')
 
 @section('title') {{$title}}    @endsection
@@ -10,7 +9,7 @@
 @section('content')
     <div id="qrcode" align="center">
     </div>
-@endsection'
+@endsection
 
 @section('footer')
     @parent
