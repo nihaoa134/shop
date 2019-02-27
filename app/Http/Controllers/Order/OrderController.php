@@ -11,8 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    //
-
+    /**
+     * 获取id
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         echo __METHOD__;
