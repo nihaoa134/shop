@@ -76,7 +76,7 @@ class OrderController extends Controller
         $data = [
             'list'  => $list
         ];
-        return view('list',$data);
+        return view('order.list',$data);
     }
 }
 
