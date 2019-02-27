@@ -18,15 +18,28 @@
         </tr>
         @foreach($data as $v)
             <tr class="text-center">
-                <td>{{$v['oid']}}</td>
+                <td>{{$v['order_id']}}</td>
                 <td>{{$v['order_sn']}}</td>
                 <td>{{$v['order_amount']/100}}</td>
                 <td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
-                <td><a href="#">取消订单</a>||<a href="/pay/order/{{$v['oid']}}">支付</a></td>
+                <td>
+                    @if($v['is_pay']==1)
+                        已支付
+                    @elseif($v['is_pay']==0)
+                        <a href="/pay/alipay/order/{{$v['order_id']}}">支付宝支付</a>或者
+                        <a href="/weixin/pay/test/{{$v['order_id']}}">微信支付</a>
+                    @endif
+                    ||
+                    @if($v['is_delete']==1)
+                        订单已取消
+                    @elseif($v['is_delete']==0)
+                            <a href="#">取消订单</a>
+                    @endif
+                </td>
             </tr>
         @endforeach
     </table>
-@endsection
+@endsection'
 
 @section('footer')
     @parent
