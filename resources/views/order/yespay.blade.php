@@ -1,4 +1,4 @@
-@extends('layouts.mama')
+@extends('layouts.bst')
 
 @section('title') {{$title}}    @endsection
 
