@@ -61,7 +61,7 @@ class OrderController extends Controller
             ];
             //写入订单商品表
             foreach($list as $k=>$v){
-                OrderGoodsModel::insert(['goods_id'=>$v['goods_id'],'order_id'=>$oid,'price'=>$v['price'],'num'=>$v['num']]);
+                OrderModel::insert(['goods_id'=>$v['goods_id'],'order_id'=>$oid,'price'=>$v['price'],'num'=>$v['num']]);
             }
             return view('order.yespay',$info);
         }else{
