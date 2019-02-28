@@ -57,7 +57,7 @@ class OrderController extends Controller
         $oid = OrderModel::insertGetId($data);
         if($oid){
             //echo '下单成功,您的订单号为'.$order_sn.'.跳转支付!';
-//            清空购物车
+//            清空购物
             CartModel::where(['uid'=>Auth::id()])->delete();
             $data['order_id']=$oid;
             $info=[
