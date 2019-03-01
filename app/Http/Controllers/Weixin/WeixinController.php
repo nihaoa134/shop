@@ -566,8 +566,8 @@ class WeixinController extends Controller
         $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code='.$code.'&grant_type=authorization_code';
         $token_json = file_get_contents($token_url);
         $token_arr = json_decode($token_json,true);
-        echo '<hr>';
-        echo '<pre>';print_r($token_arr);echo '</pre>';
+        //echo '<hr>';
+        //echo '<pre>';print_r($token_arr);echo '</pre>';
 
         $access_token = $token_arr['access_token'];
         $openid = $token_arr['openid'];
@@ -577,7 +577,82 @@ class WeixinController extends Controller
         $user_json = file_get_contents($user_info_url);
 
         $user_arr = json_decode($user_json,true);
-        echo '<hr>';
-        echo '<pre>';print_r($user_arr);echo '</pre>';
+        //echo '<hr>';
+        //echo '<pre>';print_r($user_arr);echo '</pre>';
+
+        //查询数据库中是否存在该账号
+        $unionid = $user_arr['unionid'];
+        $where = [
+            'union_id'   =>  $unionid
+        ];
+        $wx_user_info = WxUser::where($where)->first();
+        if($wx_user_info){
+            $user_info = UserModel::where(['wechat_id'=>$wx_user_info->id])->first();
+        }
+
+        if(empty($wx_user_info)){
+            //第一次登录
+            $data = [
+                'openid'        =>  $user_arr['openid'],
+                'nickname'      =>  $user_arr['nickname'],
+                'sex'           =>  $user_arr['sex'],
+                'headimgurl'    =>  $user_arr['headimgurl'],
+                'union_id'      =>  $unionid,
+                'add_time'      =>  time()
+            ];
+            $wechat_id = WxModel::insertGetId($data);
+            $rs = UserModel::insertGetId(['wechat_id'=>$wechat_id]);
+            if($rs){
+
+                $token=substr(md5(time().mt_rand(1,99999)),10,10);
+                setcookie('uid',$rs,time()+86400,'/','shop.com',false,true);
+                setcookie('token',$token,time()+86400,'/user','',false,true);
+                $request->session()->put('u_token',$token);
+                $request->session()->put('uid',$rs);
+                echo '注册成功';
+                header("refresh:2,url='/user/center'");
+            }else{
+                echo '注册失败';
+            }
+            exit;
+        }
+        $token=substr(md5(time().mt_rand(1,99999)),10,10);
+        setcookie('uid',$user_info->uid,time()+86400,'/','shop.com',false,true);
+        setcookie('token',$token,time()+86400,'/user','',false,true);
+        $request->session()->put('u_token',$token);
+        $request->session()->put('uid',$user_info->uid);
+        header("refresh:2,url='/user/center'");
+    }
+    /**
+     * 微信jssdk 调试
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function jssdkTest()
+    {
+
+        //计算签名
+
+        $jsconfig = [
+            'appid' => env('WEIXIN_APPID_0'),        //APPID
+            'timestamp' => time(),
+            'noncestr'    => str_random(10),
+            'sign'      => $this->wxJsConfigSign()
+        ];
+
+        $data = [
+            'jsconfig'  => $jsconfig
+        ];
+        return view('weixin.jssdk',$data);
+    }
+
+
+    /**
+     * 计算JSSDK sign
+     */
+    public function wxJsConfigSign()
+    {
+
+        $sign = str_random(15);
+        return $sign;
     }
 }
