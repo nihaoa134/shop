@@ -634,7 +634,7 @@ class WeixinController extends Controller
         //计算签名
 
         $jsconfig = [
-            'appid' => env('WEIXIN_APPID_0'),        //APPID
+            'appid' => env('WEIXIN_APPID'),        //APPID
             'timestamp' => time(),
             'noncestr'    => str_random(10),
             //'sign'      => $this->wxJsConfigSign()
@@ -672,8 +672,8 @@ class WeixinController extends Controller
         //是否有缓存
         $ticket = Redis::get($this->redis_weixin_jsapi_ticket);
         if(!$ticket){           // 无缓存 请求接口
-            //$access_token = $this->getWXAccessToken();
-            $access_token = '19_lxMLp0RZ-OZUS8EGc8nFvcEhJRyrsD4oMhpsZlfga0LFdORaKzQTqy29BksL3LVSUWCjLCN6CdljiMQ-hNmVKtg-nBQry5kJeIW97SUZXIFqNcIPwEl0y3OWSTY1FYIzgAS76tZpDoa2fAonQWIdACAWCO';
+            $access_token = $this->getWXAccessToken();
+            //$access_token = '19_lxMLp0RZ-OZUS8EGc8nFvcEhJRyrsD4oMhpsZlfga0LFdORaKzQTqy29BksL3LVSUWCjLCN6CdljiMQ-hNmVKtg-nBQry5kJeIW97SUZXIFqNcIPwEl0y3OWSTY1FYIzgAS76tZpDoa2fAonQWIdACAWCO';
 
             $ticket_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$access_token.'&type=jsapi';
             $ticket_info = file_get_contents($ticket_url);
