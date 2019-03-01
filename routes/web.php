@@ -121,3 +121,7 @@ Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支
 
 Route::get('/weixin/login','Weixin\WeixinController@wxlogin');      //微信登陆
 Route::get('/weixin/code','Weixin\WeixinController@wxcode');       //微信登陆回调
+
+//微信 JSSDK
+
+Route::get('/weixin/jssdk','Weixin\WeixinController@jssdkTest');       // 测试
