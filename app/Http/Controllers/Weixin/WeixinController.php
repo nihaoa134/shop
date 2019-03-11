@@ -54,15 +54,8 @@ class WeixinController extends Controller
         if(isset($xml->MsgType)){
             if($xml->MsgType=='text'){            //用户发送文本消息
                 $msg = $xml->Content;
-                //$xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. $msg. date('Y-m-d H:i:s') .']]></Content></xml>';
-                //echo $xml_response;
-                $info = [
-                    'type'      =>  1,
-                    'message'   =>  $msg,
-                    'msgid'     =>  $xml->MsgId,
-                    'add_time'  =>  time(),
-                    'open_id'   =>  $openid,
-                ];
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. $msg. date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
                 WxChatRecordModel::insertGetId($info);
             }elseif($xml->MsgType=='image'){       //用户发送图片信息
                 //视业务需求是否需要下载保存图片
