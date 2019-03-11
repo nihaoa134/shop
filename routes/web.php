@@ -96,7 +96,7 @@ Route::get('/pay','Goods\IndexController@pay');
 Route::post('/payadd','Goods\IndexController@payadd');
 
 //微信
-Route::get('/weixin/check','Weixin\WxController@check');
+Route::any('/weixin/check','Weixin\WxController@check');
 Route::get('/weixin/test','Weixin\WeixinController@test');
 Route::get('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
