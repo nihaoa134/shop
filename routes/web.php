@@ -115,6 +115,9 @@ Route::get('/weixin/kefu/{openid}','Weixin\WeixinController@kefuShow');     //�
 Route::get('/weixin/kefumsg','Weixin\WeixinController@kefuChat');     //客服聊天页面
 Route::post('/weixin/kefuchat','Weixin\WeixinController@kefuChatMsg');     //客服聊天页面
 
+Route::get('/weixin/userlike','Weixin\WeixinController@userlike');     //用户列表展示
+Route::get('/weixin/blick/{openid}','Weixin\WeixinController@block');     //拉入黑名单
+Route::post('/weixin/biaoqian','Weixin\WeixinController@biaoqian');    //加标签
 //微信支付
 Route::get('/weixin/pay/test/{id}','Weixin\PayController@test');     //微信支付
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调

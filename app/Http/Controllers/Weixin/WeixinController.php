@@ -31,10 +31,10 @@ class WeixinController extends Controller
      */
     public function validToken1()
     {
-        //$get = json_encode($_GET);
-        //$str = '>>>>>' . date('Y-m-d H:i:s') .' '. $get . "<<<<<\n";
-        //file_put_contents('logs/weixin.log',$str,FILE_APPEND);
-        echo $_GET['echostr'];
+        $get = json_encode($_GET);
+        $str = '>>>>>' . date('Y-m-d H:i:s') .' '. $get . "<<<<<\n";
+        file_put_contents('logs/weixin.log',$str,FILE_APPEND);
+        //echo $_GET['echostr'];
     }
 
 
@@ -611,6 +611,7 @@ class WeixinController extends Controller
                 $request->session()->put('u_token',$token);
                 $request->session()->put('uid',$rs);
                 echo '注册成功';
+
                 header("refresh:2,url='/user/center'");
             }else{
                 echo '注册失败';
@@ -686,6 +687,47 @@ class WeixinController extends Controller
             }
         }
         return $ticket;
-
     }
+    public function userlike()
+    {
+        $links = WeixinUser::paginate(2);
+        $data = [
+            'list' => $links,
+        ];
+        //print_r($links);
+        //exit();
+        $ticket = json_encode($data['list']);
+        Redis::set($this->redis_weixin_jsapi_ticket,$ticket);
+        Redis::setTimeout($this->redis_weixin_jsapi_ticket,3600);
+        return view('weixin.userlike',$data);
+    }
+    public function biaoqian(){
+        $openid=$_POST['openid'];
+        $access_token = $this->getWXAccessToken();
+        $url='//api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token='.$access_token.'&type=jsapi';
+        $data=[
+            "openid_list"=>[$openid],
+            "tagid" =>100
+        ];
+        $client = new GuzzleHttp\Client();
+        $response = $client->request('POST',$url,[
+            'body' => json_encode($data)
+        ]);
+         echo '<pre>';print_r(json_decode($response->getBody(),true));echo '</pre>';
+    }
+    public function block($openid)
+    {
+        $access_token = $this->getWXAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchblacklist?access_token='.$access_token.'&type=jsapi';
+        $data = [
+            'openid_list' =>[$openid]
+        ];
+        $client =new GuzzleHttp\Client();
+        $response = $client->request('POST',$url,[
+            'body' => json_encode($data)
+        ]);
+
+        echo '<pre>';print_r(json_decode($response->getBody(),true));echo '</pre>';
+    }
+
 }
