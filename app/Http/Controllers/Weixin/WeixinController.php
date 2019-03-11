@@ -50,9 +50,6 @@ class WeixinController extends Controller
         $openid = $xml->FromUserName;               //用户openid
         $event = $xml->Event;                       //事件类型
 
-		$log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
-        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
-
         // 处理用户发送消息
         if(isset($xml->MsgType)){
             if($xml->MsgType=='text'){            //用户发送文本消息
@@ -120,7 +117,8 @@ class WeixinController extends Controller
             exit();
         }
 
-        
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
     }
 
     /**
