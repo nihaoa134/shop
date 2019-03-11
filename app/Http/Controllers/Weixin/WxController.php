@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class WxController extends Controller
 {
     public function check(Request $request){
-        echo  $request->input('echostr');exit;
+        echo  $request->input('echostr');
 
 //        file_put_contents("/tmp/aasd.log",$arr,FILE_APPEND);
 //      $str=$arr['echostr'];
