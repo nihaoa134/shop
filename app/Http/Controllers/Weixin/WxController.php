@@ -9,7 +9,7 @@ class WxController extends Controller
 {
     public function check()
     {
-        echo $_GET['echostr'];
+                //echo $_GET['echostr'];
 
                 $str = file_get_contents('php://input');
 
@@ -30,7 +30,7 @@ class WxController extends Controller
                 $CreateTime = $objxml->CreateTime;
 
 
-                if ($MsgType == 'text') {
+ /*               if ($MsgType == 'text') {
 
                     $goodsList = GoodsModel::where('goods_name', 'like', "%$Content%") -> first();
 
@@ -58,8 +58,10 @@ class WxController extends Controller
 
                     echo $xml;
 
-        }
-
+                 }*/
+        $msg = $xml->Content;
+        $xml_response = '<xml><ToUserName><![CDATA['. $FormUserName. ']]></ToUserName><FromUserName><![CDATA[' . $xml->ToUserName . ']]></FromUserName><CreateTime>' . time() . '</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[' . $msg . date('Y-m-d H:i:s') . ']]></Content></xml>';
+        echo $xml_response;
 
     }
 
