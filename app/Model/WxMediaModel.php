@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WxUser extends Model
+class WxMediaModel extends Model
 {
     //
-    public $table = 'wx_user';
+    public $table = 'wx_media';
     public $timestamps = false;
 
 }
