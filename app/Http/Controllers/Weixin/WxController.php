@@ -17,24 +17,43 @@ class WxController extends Controller
 
     public function wxEvent()
     {
-        $data = file_get_contents("php://input");
+//图文推送
+        $str = file_get_contents("php://input");
 
-        //解析XML
-        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+        $objxml = simplexml_load_string($str);
+        $ToUserName = $objxml->ToUserName;
+        $CreateTime = $objxml->CreateTime;
+        $FromUserName = $objxml->FromUserName;
+        $MsgType = $objxml->MsgType;
+        $Event = $objxml->Event;
+        $Content = $objxml->Content;
+        $data = DB::table('shop_goods')->where('goods_name','like',"%$Content%")->first();
+        $goods_name = $data->goods_name;
+        $goods_selfmon=$data->goods_selfmon;
+        if($data){
+            $goods_img = "http://39.96.32.132/goods_img/$data->goods_img";
+            $title = "$goods_name";
+            $descriptionl = "$goods_selfmon";
+            $time = time();
+            $str="<xml>
+                <ToUserName><![CDATA[$FromUserName]]></ToUserName>
+               <FromUserName><![CDATA[$ToUserName]]></FromUserName>
+                <CreateTime>$time</CreateTime>
+                <MsgType><![CDATA[news]]></MsgType>
+                <ArticleCount>1</ArticleCount>
+                <Articles>
+            <item>
+            <Title><![CDATA[$title]]></Title>
+            <Description><![CDATA[$descriptionl]]></Description>
+            <PicUrl><![CDATA[$goods_img]]></PicUrl>
+            <Url><![CDATA[$goods_img]]></Url>
+            </item>
+        </Articles>
+        </xml>";
+            echo $str;
 
-        $event = $xml->Event;
-        $openid = $xml->FromUserName;                   //事件类型
-        var_dump($xml);
-        echo '<hr>';
-        //处理用户发送消息
-                if(isset($xml->MsgType)){
-                    if($xml->MsgType == 'text'){
-                        $msg = $xml->Content;
-                        $xml_response = '<xml><ToUserName><![CDATA[' . $openid . ']]></ToUserName><FromUserName><![CDATA[' . $xml->ToUserName . ']]></FromUserName><CreateTime>' . time() . '</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[' . $msg . date('Y-m-d H:i:s') . ']]></Content></xml>';
-                        echo $xml_response;
-                    }
-            }
-                $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
-                file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+        }else{
+
+        }
     }
 }
