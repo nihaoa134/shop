@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Wechat;
 
 use App\Http\Controllers\Controller;
-use App\Model\Goods;
+use App\Model\GoodsModel;
 
-class WechatController extends Controller
+class WxController extends Controller
 {
     public function check()
     {
+        echo $_GET['echostr'];
 
         $str = file_get_contents('php://input');
 
@@ -31,11 +32,11 @@ class WechatController extends Controller
 
         if ($MsgType == 'text') {
 
-            $goodsList = Goods::where('goods_name', 'like', "%$Content%") -> first();
+            $goodsList = GoodsModel::where('goods_name', 'like', "%$Content%") -> first();
 
             $time = time();
 
-            $url = "http://funny.wanxiaoyu.cn";
+            $url = "https://pp.lixiaonitongxue.top";
 
             $xml = "
                 <xml>
