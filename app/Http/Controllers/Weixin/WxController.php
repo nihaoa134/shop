@@ -10,7 +10,7 @@ class WxController extends Controller
     public function check()
     {
         echo $_GET['echostr'];
-/*
+
                 $str = file_get_contents('php://input');
 
                 file_put_contents('/tmp/weixin.k.log', $str, FILE_APPEND);
@@ -58,7 +58,7 @@ class WxController extends Controller
 
                     echo $xml;
 
-        }*/
+        }
 
 
     }
