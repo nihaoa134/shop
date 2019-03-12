@@ -13,55 +13,55 @@ class WxController extends Controller
 
                 $str = file_get_contents('php://input');
 
-                file_put_contents('/tmp/weixin.k.log', $str, FILE_APPEND);
+                file_put_contents('/tmp/weixin.log', $str, FILE_APPEND);
 
-                $objxml = simplexml_load_string($str);
-
-                $ToUserName = $objxml->ToUserName;
-
-                $FormUserName = $objxml->FromUserName;
-
-                $MsgType = $objxml->MsgType;
-
-                $Event = $objxml->Event;
-
-                $Content = $objxml->Content;
-
-                $CreateTime = $objxml->CreateTime;
-
-
- /*               if ($MsgType == 'text') {
-
-                    $goodsList = GoodsModel::where('goods_name', 'like', "%$Content%") -> first();
-
-                    $time = time();
-
-                    $url = "https://pp.lixiaonitongxue.top";
-
-                    $xml = "
-                        <xml>
-                        <ToUserName><![CDATA[$FormUserName]]></ToUserName>
-                        <FromUserName><![CDATA[$ToUserName]]></FromUserName>
-                        <CreateTime>$time</CreateTime>
-                        <MsgType><![CDATA[news]]></MsgType>
-                        <ArticleCount>1</ArticleCount>
-                            <Articles>
-                                <item>
-                                    <Title><![CDATA[{$goodsList -> goods_name}]]></Title>
-                                    <Description><![CDATA[{$goodsList -> goods_selfprice}]]></Description>
-                                    <PicUrl><![CDATA[{$goodsList -> goods_img}]]></PicUrl>
-                                    <Url><![CDATA[$url]]></Url>
-                                </item>
-                            </Articles>
-                    </xml>
-                    ";
-
-                    echo $xml;
-
-                 }*/
-        $msg = $xml->Content;
-        $xml_response = '<xml><ToUserName><![CDATA['. $FormUserName. ']]></ToUserName><FromUserName><![CDATA[' . $xml->ToUserName . ']]></FromUserName><CreateTime>' . time() . '</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[' . $msg . date('Y-m-d H:i:s') . ']]></Content></xml>';
-        echo $xml_response;
+//                $objxml = simplexml_load_string($str);
+//
+//                $ToUserName = $objxml->ToUserName;
+//
+//                $FormUserName = $objxml->FromUserName;
+//
+//                $MsgType = $objxml->MsgType;
+//
+//                $Event = $objxml->Event;
+//
+//                $Content = $objxml->Content;
+//
+//                $CreateTime = $objxml->CreateTime;
+//
+//
+// /*               if ($MsgType == 'text') {
+//
+//                    $goodsList = GoodsModel::where('goods_name', 'like', "%$Content%") -> first();
+//
+//                    $time = time();
+//
+//                    $url = "https://pp.lixiaonitongxue.top";
+//
+//                    $xml = "
+//                        <xml>
+//                        <ToUserName><![CDATA[$FormUserName]]></ToUserName>
+//                        <FromUserName><![CDATA[$ToUserName]]></FromUserName>
+//                        <CreateTime>$time</CreateTime>
+//                        <MsgType><![CDATA[news]]></MsgType>
+//                        <ArticleCount>1</ArticleCount>
+//                            <Articles>
+//                                <item>
+//                                    <Title><![CDATA[{$goodsList -> goods_name}]]></Title>
+//                                    <Description><![CDATA[{$goodsList -> goods_selfprice}]]></Description>
+//                                    <PicUrl><![CDATA[{$goodsList -> goods_img}]]></PicUrl>
+//                                    <Url><![CDATA[$url]]></Url>
+//                                </item>
+//                            </Articles>
+//                    </xml>
+//                    ";
+//
+//                    echo $xml;
+//
+//                 }*/
+//        $msg = $xml->Content;
+//        $xml_response = '<xml><ToUserName><![CDATA['. $FormUserName. ']]></ToUserName><FromUserName><![CDATA[' . $xml->ToUserName . ']]></FromUserName><CreateTime>' . time() . '</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[' . $msg . date('Y-m-d H:i:s') . ']]></Content></xml>';
+//        echo $xml_response;
 
     }
 
