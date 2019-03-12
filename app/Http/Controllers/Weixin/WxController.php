@@ -10,7 +10,7 @@ class WxController extends Controller
 {
     public function check(Request $request)
     {
-        /*        echo  $request->input('echostr');
+              echo  $request->input('echostr');
 
         //        file_put_contents("/tmp/aasd.log",$arr,FILE_APPEND);
         //      $str=$arr['echostr'];
@@ -31,7 +31,7 @@ class WxController extends Controller
                     }else{
                         Xml::where(['FromUserName'=>$objxml->FromUserName,'Event'=>'subscribe'])->delete();
                     }
-                }*/
+                }
 
 
 //图文推送
