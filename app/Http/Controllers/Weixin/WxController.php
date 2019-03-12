@@ -1,59 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\Weixin;
+namespace App\Http\Controllers\Wechat;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Goods;
 
-class WxController extends Controller
+class WechatController extends Controller
 {
-    /**
-     *首次接入
-     */
     public function check()
     {
-        echo $_GET['echostr'];
-    }
 
-    public function wxEvent()
-    {
-//图文推送
-        $str = file_get_contents("php://input");
+        $str = file_get_contents('php://input');
+
+        file_put_contents('/tmp/weixin.k.log', $str, FILE_APPEND);
 
         $objxml = simplexml_load_string($str);
+
         $ToUserName = $objxml->ToUserName;
-        $CreateTime = $objxml->CreateTime;
-        $FromUserName = $objxml->FromUserName;
+
+        $FormUserName = $objxml->FromUserName;
+
         $MsgType = $objxml->MsgType;
+
         $Event = $objxml->Event;
+
         $Content = $objxml->Content;
-        $data = DB::table('shop_goods')->where('goods_name','like',"%$Content%")->first();
-        $goods_name = $data->goods_name;
-        $goods_selfmon=$data->goods_selfmon;
-        if($data){
-            $goods_img = "http://39.96.32.132/goods_img/$data->goods_img";
-            $title = "$goods_name";
-            $descriptionl = "$goods_selfmon";
+
+        $CreateTime = $objxml->CreateTime;
+
+
+        if ($MsgType == 'text') {
+
+            $goodsList = Goods::where('goods_name', 'like', "%$Content%") -> first();
+
             $time = time();
-            $str="<xml>
-                <ToUserName><![CDATA[$FromUserName]]></ToUserName>
-               <FromUserName><![CDATA[$ToUserName]]></FromUserName>
+
+            $url = "http://funny.wanxiaoyu.cn";
+
+            $xml = "
+                <xml>
+                <ToUserName><![CDATA[$FormUserName]]></ToUserName>
+                <FromUserName><![CDATA[$ToUserName]]></FromUserName>
                 <CreateTime>$time</CreateTime>
                 <MsgType><![CDATA[news]]></MsgType>
                 <ArticleCount>1</ArticleCount>
-                <Articles>
-            <item>
-            <Title><![CDATA[$title]]></Title>
-            <Description><![CDATA[$descriptionl]]></Description>
-            <PicUrl><![CDATA[$goods_img]]></PicUrl>
-            <Url><![CDATA[$goods_img]]></Url>
-            </item>
-        </Articles>
-        </xml>";
-            echo $str;
+                    <Articles>
+                        <item>
+                            <Title><![CDATA[{$goodsList -> goods_name}]]></Title>
+                            <Description><![CDATA[{$goodsList -> goods_selfprice}]]></Description>
+                            <PicUrl><![CDATA[{$goodsList -> goods_img}]]></PicUrl>
+                            <Url><![CDATA[$url]]></Url>
+                        </item>
+                    </Articles>
+            </xml>
+            ";
 
-        }else{
+            echo $xml;
 
         }
+
+
     }
+
 }
