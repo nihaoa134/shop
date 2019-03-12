@@ -14,12 +14,10 @@ class WxController extends Controller
 
         //        file_put_contents("/tmp/aasd.log",$arr,FILE_APPEND);
         //      $str=$arr['echostr'];
-        //        echo $str;
-                 $request->input('echostr');
-                $str = file_get_contents("php://input");
+/*                $str = file_get_contents("php://input");
                 //echo $str;
                 file_put_contents('/tmp/weixin.log', $str, FILE_APPEND);
-               $objxml = simplexml_load_string($str);
+                $objxml = simplexml_load_string($str);
                 $arr['ToUserName'] = $objxml->ToUserName;
                 $arr['FromUserName'] = $objxml->FromUserName;
                 $arr['CreateTime'] = $objxml->CreateTime;
@@ -31,11 +29,11 @@ class WxController extends Controller
                     }else{
                         Xml::where(['FromUserName'=>$objxml->FromUserName,'Event'=>'subscribe'])->delete();
                     }
-                }
+                }*/
 
 
 //图文推送
-        $str = file_get_contents("php://input");
+/*        $str = file_get_contents("php://input");
 
         $objxml = simplexml_load_string($str);
         $ToUserName = $objxml->ToUserName;
@@ -68,7 +66,7 @@ class WxController extends Controller
                 </Articles>
                 </xml>";
             echo $str;
-
+*/
 
         }
     }
