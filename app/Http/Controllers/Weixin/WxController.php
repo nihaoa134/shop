@@ -4,36 +4,37 @@ namespace App\Http\Controllers\Weixin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\GoodsModel;
 
 class WxController extends Controller
 {
     public function check(Request $request)
     {
               echo  $request->input('echostr');
+            /*$str = file_get_contents("php://input");
 
-        //        file_put_contents("/tmp/aasd.log",$arr,FILE_APPEND);
-        //      $str=$arr['echostr'];
-/*                $str = file_get_contents("php://input");
-                //echo $str;
-                file_put_contents('/tmp/weixin.log', $str, FILE_APPEND);
-                $objxml = simplexml_load_string($str);
-                $arr['ToUserName'] = $objxml->ToUserName;
-                $arr['FromUserName'] = $objxml->FromUserName;
-                $arr['CreateTime'] = $objxml->CreateTime;
-                $arr['MsgType'] = $objxml->MsgType;
-                $arr['Event'] = $objxml->Event;
-                if($objxml->MsgType == 'event'){
-                    if($objxml->Event == 'subscribe'){
-                        Xml::insert($arr);
-                    }else{
-                        Xml::where(['FromUserName'=>$objxml->FromUserName,'Event'=>'subscribe'])->delete();
-                    }
-                }*/
+            $objxml = simplexml_load_string($str);
+            $ToUserName = $objxml->ToUserName;
+            $CreateTime = $objxml->CreateTime;
+            $FromUserName = $objxml->FromUserName;
+            $MsgType = $objxml->MsgType;
+            $Event = $objxml->Event;
 
-
+            $arr=array(
+                "ToUserName" => $ToUserName,
+                "FromUserName" => $FromUserName,
+                "CreateTime" => $CreateTime,
+                "MsgType" => $MsgType,
+                "Event" => $Event
+            );
+       #file_put_contents("/tmp/weixin.k.log",$str,FILE_APPEND);
+    //连接数据库
+       file_put_contents("/tmp/wx.log",$arr,FILE_APPEND);
+       $mysqli = mysqli_connect('39.105.17.217','xihonggang','123456','laravel')or('连接失败');
+       $sql = "insert into vx(ToUserName,FromUserName,CreateTime,MsgType,Event) values ('$ToUserName','$FromUserName','$CreateTime','$MsgType','$Event')";
+       $res = mysqli_query($mysqli,$sql);
+       $arr = @mysqli_fetch_assoc($res);
 //图文推送
-/*        $str = file_get_contents("php://input");
+        $str = file_get_contents("php://input");
 
         $objxml = simplexml_load_string($str);
         $ToUserName = $objxml->ToUserName;
@@ -66,8 +67,7 @@ class WxController extends Controller
                 </Articles>
                 </xml>";
             echo $str;
-*/
 
-        }
+        }*/
     }
 }
