@@ -10,7 +10,7 @@ class WxController extends Controller
     public function check(Request $request)
     {
               echo  $request->input('echostr');
-            /*$str = file_get_contents("php://input");
+            $str = file_get_contents("php://input");
 
             $objxml = simplexml_load_string($str);
             $ToUserName = $objxml->ToUserName;
@@ -29,10 +29,10 @@ class WxController extends Controller
        #file_put_contents("/tmp/weixin.k.log",$str,FILE_APPEND);
     //连接数据库
        file_put_contents("/tmp/wx.log",$arr,FILE_APPEND);
-       $mysqli = mysqli_connect('39.105.17.217','xihonggang','123456','laravel')or('连接失败');
+       $mysqli = mysqli_connect('127.0.0.1','root','root','test')or('连接失败');
        $sql = "insert into vx(ToUserName,FromUserName,CreateTime,MsgType,Event) values ('$ToUserName','$FromUserName','$CreateTime','$MsgType','$Event')";
        $res = mysqli_query($mysqli,$sql);
-       $arr = @mysqli_fetch_assoc($res);
+       $arr = @mysqli_fetch_assoc($res);/*
 //图文推送
         $str = file_get_contents("php://input");
 
