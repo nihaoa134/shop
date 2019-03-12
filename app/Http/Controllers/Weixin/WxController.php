@@ -29,7 +29,7 @@ class WxController extends Controller
        #file_put_contents("/tmp/weixin.k.log",$str,FILE_APPEND);
     //连接数据库
        file_put_contents("/tmp/wx.log",$arr,FILE_APPEND);
-       $mysqli = mysqli_connect('127.0.0.1','root','root','test')or('连接失败');
+       $mysqli = mysqli_connect('39.96.32.132','root','root','test')or('连接失败');
        $sql = "insert into vx(ToUserName,FromUserName,CreateTime,MsgType,Event) values ('$ToUserName','$FromUserName','$CreateTime','$MsgType','$Event')";
        $res = mysqli_query($mysqli,$sql);
        $arr = @mysqli_fetch_assoc($res);/*
