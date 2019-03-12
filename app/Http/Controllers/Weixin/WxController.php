@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Wechat;
+namespace App\Http\Controllers\Weixin;
 
 use App\Http\Controllers\Controller;
 use App\Model\GoodsModel;
@@ -20,7 +20,7 @@ class WxController extends Controller
                 $ToUserName = $objxml->ToUserName;
 
                 $FormUserName = $objxml->FromUserName;
-        
+
                 $MsgType = $objxml->MsgType;
 
                 $Event = $objxml->Event;
@@ -56,9 +56,9 @@ class WxController extends Controller
                     </xml>
                     ";
 
-                    echo $xml;*/
+                    echo $xml;
 
-        }
+        }*/
 
 
     }
